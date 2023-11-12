@@ -1,0 +1,146 @@
+  | Name            | Type       | Params
+-----------------------------------------------
+0 | model           | BERT       | 3.4 M
+1 | micro_acc_val   | ModuleDict | 0
+2 | macro_acc_val   | ModuleDict | 0
+3 | micro_acc_train | ModuleDict | 0
+4 | macro_acc_train | ModuleDict | 0
+-----------------------------------------------
+3.4 M     Trainable params
+0         Non-trainable params
+3.4 M     Total params
+13.766    Total estimated model params size (MB)
+Validation sanity check:   0%|                                                                    | 0/2 [00:00<?, ?it/s]
+
+
+Epoch 0:   2%|▋                                             | 10/639 [00:25<27:13,  2.60s/it, loss=2.18e+03, v_num=c7ih]
+ERROR:root:Exception while sending command.
+Traceback (most recent call last):
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/torch/utils/data/_utils/signal_handling.py", line 66, in handler
+    _error_if_any_worker_fails()
+RuntimeError: DataLoader worker (pid 1460) exited unexpectedly with exit code 1. Details are lost due to multiprocessing. Rerunning with num_workers=0 may give better error trace.
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+Exception ignored in: <function _MultiProcessingDataLoaderIter.__del__ at 0x7f307f203010>
+Traceback (most recent call last):
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1478, in __del__
+    self._shutdown_workers()
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1442, in _shutdown_workers
+    w.join(timeout=_utils.MP_STATUS_CHECK_INTERVAL)
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/multiprocessing/process.py", line 149, in join
+    res = self._popen.wait(timeout)
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/multiprocessing/popen_fork.py", line 40, in wait
+    if not wait([self.sentinel], timeout):
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/multiprocessing/connection.py", line 931, in wait
+    ready = selector.select(timeout)
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/selectors.py", line 416, in select
+    fd_event_list = self._selector.poll(timeout)
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/pyspark/context.py", line 378, in signal_handler
+    raise KeyboardInterrupt()
+KeyboardInterrupt:
+Traceback (most recent call last):
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 682, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 772, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1194, in _run
+    self._dispatch()
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1274, in _dispatch
+    self.training_type_plugin.start_training(self)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/plugins/training_type/training_type_plugin.py", line 202, in start_training
+    self._results = trainer.run_stage()
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1284, in run_stage
+    return self._run_train()
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1314, in _run_train
+    self.fit_loop.run()
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/loops/base.py", line 145, in run
+    self.advance(*args, **kwargs)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py", line 234, in advance
+    self.epoch_loop.run(data_fetcher)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/loops/base.py", line 145, in run
+    self.advance(*args, **kwargs)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/loops/epoch/training_epoch_loop.py", line 193, in advance
+    batch_output = self.batch_loop.run(batch, batch_idx)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/loops/base.py", line 145, in run
+    self.advance(*args, **kwargs)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/loops/batch/training_batch_loop.py", line 88, in advance
+    outputs = self.optimizer_loop.run(split_batch, optimizers, batch_idx)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/loops/base.py", line 145, in run
+    self.advance(*args, **kwargs)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/loops/optimization/optimizer_loop.py", line 215, in advance
+    result = self._run_optimization(
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/loops/optimization/optimizer_loop.py", line 266, in _run_optimization
+    self._optimizer_step(optimizer, opt_idx, batch_idx, closure)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/loops/optimization/optimizer_loop.py", line 378, in _optimizer_step
+    lightning_module.optimizer_step(
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/core/lightning.py", line 1652, in optimizer_step
+    optimizer.step(closure=optimizer_closure)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/core/optimizer.py", line 164, in step
+    trainer.accelerator.optimizer_step(self._optimizer, self._optimizer_idx, closure, **kwargs)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/accelerators/accelerator.py", line 336, in optimizer_step
+    self.precision_plugin.optimizer_step(model, optimizer, opt_idx, closure, **kwargs)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/plugins/precision/precision_plugin.py", line 163, in optimizer_step
+    optimizer.step(closure=closure, **kwargs)
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/torch/optim/optimizer.py", line 373, in wrapper
+    out = func(*args, **kwargs)
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/torch/optim/optimizer.py", line 76, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/torch/optim/adam.py", line 143, in step
+    loss = closure()
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/plugins/precision/precision_plugin.py", line 148, in _wrap_closure
+    closure_result = closure()
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/loops/optimization/optimizer_loop.py", line 160, in __call__
+    self._result = self.closure(*args, **kwargs)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/loops/optimization/optimizer_loop.py", line 142, in closure
+    step_output = self._step_fn()
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/loops/optimization/optimizer_loop.py", line 435, in _training_step
+    training_step_output = self.trainer.accelerator.training_step(step_kwargs)
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/accelerators/accelerator.py", line 216, in training_step
+    return self.training_type_plugin.training_step(*step_kwargs.values())
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/plugins/training_type/training_type_plugin.py", line 213, in training_step
+    return self.model.training_step(*args, **kwargs)
+  File "/mnt/f/people-model/pm_experiment.py", line 54, in training_step
+    outputs = self.forward(batch)
+  File "/mnt/f/people-model/pm_experiment.py", line 51, in forward
+    return self.model(input)
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/mnt/f/people-model/bert_model/bert.py", line 125, in forward
+    if sequence_mask[j] == 0 and sequence_mask[k] == 0:
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/pyspark/context.py", line 377, in signal_handler
+    self.cancelAllJobs()
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/pyspark/context.py", line 2255, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/pyspark/errors/exceptions/captured.py", line 169, in deco
+    return f(*a, **kw)
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o1050.cancelAllJobs
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/mnt/f/people-model/train.py", line 46, in <module>
+    main("config/pm.yaml")
+  File "/mnt/f/people-model/train.py", line 43, in main
+    trainer.fit(model_module, dataloader.train_dataloader(), dataloader.val_dataloader())
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 737, in fit
+    self._call_and_handle_interrupt(
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 701, in _call_and_handle_interrupt
+    self._data_connector.teardown()
+  File "/home/raymondliuth/.local/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/data_connector.py", line 262, in teardown
+    self.sanity_check_data_fetcher.teardown()
+  File "/home/raymondliuth/anaconda3/envs/pytorch/lib/python3.10/site-packages/pyspark/context.py", line 378, in signal_handler
+    raise KeyboardInterrupt()
+KeyboardInterrupt
